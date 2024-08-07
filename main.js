@@ -4,13 +4,15 @@ const numberOfTilesDisplayed = 450;
 let resetBtn = document.querySelector('.reset-btn'); 
 
 const choosenColor = "rgb(255, 77, 0)"; 
+const baseColor = "#0e1118"
 
 function resetGame(){
-    console.log("game reseted");
+
     
+    //Reseting all event listeners and base color for tiles 
     allTiles.forEach(tile => {
 
-        tile.style.backgroundColor = "#0e1118"
+        tile.style.backgroundColor = baseColor
 
         tile.addEventListener("mouseover", handleMouseOver);
         tile.addEventListener("mouseout", handleMouseOut);
@@ -58,7 +60,7 @@ function handleMouseOver(event) {
 
 
 function handleMouseOut(event) {
-    event.target.style.backgroundColor = "#0e1118";
+    event.target.style.backgroundColor = baseColor;
     event.target.style.transition = "0.5s";
 }
 
