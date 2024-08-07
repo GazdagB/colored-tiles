@@ -1,8 +1,41 @@
 let tileContainer = document.querySelector(".tile-container");
 let allTiles = [];
 const numberOfTilesDisplayed = 450;
+let resetBtn = document.querySelector('.reset-btn'); 
 
 const choosenColor = "rgb(255, 77, 0)"; 
+
+function resetGame(){
+    console.log("game reseted");
+    
+    allTiles.forEach(tile => {
+
+        tile.style.backgroundColor = "#0e1118"
+
+        tile.addEventListener("mouseover", handleMouseOver);
+        tile.addEventListener("mouseout", handleMouseOut);
+        
+        tile.addEventListener('click',(event)=>{
+            let computedStyle = window.getComputedStyle(tile); 
+            if(computedStyle.backgroundColor === choosenColor){
+                tile.removeEventListener('mouseover',handleMouseOver);
+                tile.removeEventListener("mouseout", handleMouseOut)
+            }
+        })
+    });
+}
+
+function setChoosenColor(choosenColor){
+    document.querySelector(".choosen-tile").style.backgroundColor = choosenColor;
+    resetBtn.style.backgroundColor = choosenColor; 
+    resetBtn.addEventListener('mouseenter',()=>{
+        resetBtn.style.backgroundColor = getNextColor(); 
+    })
+
+    resetBtn.addEventListener('mouseout',()=>{
+        resetBtn.style.backgroundColor = choosenColor; 
+    })
+}
 
 
 let colorsArray = [
@@ -31,12 +64,17 @@ function handleMouseOut(event) {
 
 
 window.addEventListener("load", () => {
+
+    setChoosenColor(choosenColor);
+
     for (let i = 0; i < numberOfTilesDisplayed; i++) {
         let tile = document.createElement('div');
         tile.classList.add("tile");
         tileContainer.appendChild(tile);
         console.log("run");
     }
+
+    resetBtn.addEventListener('click',resetGame)
 
     allTiles.push(...document.querySelectorAll('.tile'));
     allTiles.forEach(tile => {

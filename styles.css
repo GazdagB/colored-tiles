@@ -24,7 +24,19 @@ body h1{
     width: 50px;
     aspect-ratio: 1/1;
     border: 0.5px solid rgba(255, 255, 255, 0.1);
-   
+}
+
+.choosen-tile{
+    width: 25px;
+    aspect-ratio: 1/1;
+    border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.choosen-color-container{
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-bottom: 25px;
 }
 
 .tile-container{
@@ -32,3 +44,22 @@ body h1{
     display: flex;
     flex-wrap: wrap;
 }
+
+.btn{
+    padding: 5px 10px;
+    color: #0e1118;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.reset-btn{
+ font-weight: bold;
+}
+
+.reset-btn:hover{
+    transform: scale(1.02);
+    transition: 0.3s;
+}
+
+
