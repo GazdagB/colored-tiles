@@ -2,19 +2,33 @@ let tileContainer = document.querySelector(".tile-container");
 let allTiles = [];
 const numberOfTilesDisplayed = 450;
 
+const choosenColor = "rgb(255, 77, 0)"; 
 
-let colorsArray = [ 
-    "#FF3864", 
-    "#2DE2E6", 
-    "#F9C80E", 
-    "#00FF41", 
-    "#FF0090", 
-    "#FF4D00", 
-    "#0D00FF"  
+
+let colorsArray = [
+    "rgb(255, 56, 100)",  // #FF3864
+    "rgb(45, 226, 230)",  // #2DE2E6
+    "rgb(249, 200, 14)",  // #F9C80E
+    "rgb(0, 255, 65)",    // #00FF41
+    "rgb(255, 0, 144)",   // #FF0090
+    "rgb(255, 77, 0)",    // #FF4D00
+    "rgb(13, 0, 255)"     // #0D00FF
 ];
 
 let shuffledColors = shuffleArray([...colorsArray]);
 let colorIndex = 0;
+
+function handleMouseOver(event) {
+    event.target.style.transition = "0s";
+    event.target.style.backgroundColor = getNextColor();
+}
+
+
+function handleMouseOut(event) {
+    event.target.style.backgroundColor = "#0e1118";
+    event.target.style.transition = "0.5s";
+}
+
 
 window.addEventListener("load", () => {
     for (let i = 0; i < numberOfTilesDisplayed; i++) {
@@ -26,15 +40,17 @@ window.addEventListener("load", () => {
 
     allTiles.push(...document.querySelectorAll('.tile'));
     allTiles.forEach(tile => {
-        tile.addEventListener("mouseover", (event) => {
-            tile.style.transition = "0s";
-            event.target.style.backgroundColor = getNextColor();
-        });
 
-        tile.addEventListener("mouseout", (event) => {
-            tile.style.backgroundColor = "#0e1118";
-            tile.style.transition = "1s";
-        });
+        tile.addEventListener("mouseover", handleMouseOver);
+        tile.addEventListener("mouseout", handleMouseOut);
+        
+        tile.addEventListener('click',(event)=>{
+            let computedStyle = window.getComputedStyle(tile); 
+            if(computedStyle.backgroundColor === choosenColor){
+                tile.removeEventListener('mouseover',handleMouseOver);
+                tile.removeEventListener("mouseout", handleMouseOut)
+            }
+        })
     });
 });
 
