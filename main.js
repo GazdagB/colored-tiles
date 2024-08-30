@@ -1,10 +1,28 @@
 let tileContainer = document.querySelector(".tile-container");
 let allTiles = [];
-const numberOfTilesDisplayed = 450;
+const numberOfTilesDisplayed = 3;
 let resetBtn = document.querySelector('.reset-btn'); 
 
 const choosenColor = "rgb(255, 77, 0)"; 
 const baseColor = "#0e1118"
+
+function checkIfWon() {
+    let outcome = true;
+    let index = 0;
+
+    while (outcome && index < allTiles.length) {
+        let currentColor = window.getComputedStyle(allTiles[index]).backgroundColor;
+
+        if (currentColor === choosenColor) {
+            index++;
+        } else {
+            outcome = false;
+        }
+    }
+
+    return outcome;
+}
+
 
 function resetGame(){
 
@@ -64,7 +82,6 @@ function handleMouseOut(event) {
     event.target.style.transition = "0.5s";
 }
 
-
 window.addEventListener("load", () => {
 
     setChoosenColor(choosenColor);
@@ -89,10 +106,19 @@ window.addEventListener("load", () => {
             if(computedStyle.backgroundColor === choosenColor){
                 tile.removeEventListener('mouseover',handleMouseOver);
                 tile.removeEventListener("mouseout", handleMouseOut)
+                paintWin();
             }
         })
     });
 });
+
+function paintWin() {
+    if (checkIfWon()) {
+        console.log("Congrats you won!");
+    } else {
+        console.log("You haven't won yet.");
+    }
+}
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
