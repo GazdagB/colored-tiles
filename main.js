@@ -1,7 +1,9 @@
 let tileContainer = document.querySelector(".tile-container");
 let allTiles = [];
-const numberOfTilesDisplayed = 3;
+const numberOfTilesDisplayed = 160;
 let resetBtn = document.querySelector('.reset-btn'); 
+let colorForm = document.getElementById('color-form'); 
+let colorModal = document.querySelector(".color-modal");
 
 const choosenColor = "rgb(255, 77, 0)"; 
 const baseColor = "#0e1118"
@@ -63,10 +65,44 @@ let colorsArray = [
     "rgb(45, 226, 230)",  // #2DE2E6
     "rgb(249, 200, 14)",  // #F9C80E
     "rgb(0, 255, 65)",    // #00FF41
-    "rgb(255, 0, 144)",   // #FF0090
     "rgb(255, 77, 0)",    // #FF4D00
     "rgb(13, 0, 255)"     // #0D00FF
 ];
+
+function createChoosableColors(colorsArray, colorsContainerElem) {
+    let colorContainers = [];
+
+    colorsArray.forEach(color => {
+        let container = document.createElement("div");
+        container.setAttribute("class", "color-container"); // Set class after creating element
+        colorContainers.push(container); // Push the element itself
+    });
+
+    colorContainers.forEach((container, index) => {
+        let color = colorsArray[index];
+        let colorTile = document.createElement("div");
+        let inputTile = document.createElement("input");
+
+        colorTile.setAttribute("class", "choosable-tile");
+        colorTile.style.backgroundColor = color;
+
+        inputTile.type = "radio";
+        inputTile.name = "color";
+        inputTile.classList.add("color-input");
+        inputTile.id = `color${index}`;
+        inputTile.value = color;
+
+        container.appendChild(colorTile);
+        container.appendChild(inputTile);
+    });
+
+    colorContainers.forEach((container) => {
+        colorsContainerElem.appendChild(container);
+    });
+}
+
+createChoosableColors(colorsArray,document.getElementById("color-parent"))
+
 
 let shuffledColors = shuffleArray([...colorsArray]);
 let colorIndex = 0;
@@ -136,3 +172,7 @@ function getNextColor() {
     return shuffledColors[colorIndex++];
 }
 
+colorForm.addEventListener("submit", (e)=>{
+    e.preventDefault();
+    colorModal.setAttribute("style", "display: none")
+})
