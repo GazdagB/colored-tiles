@@ -1,6 +1,6 @@
 # 160Tiles Todos
 
-## Game settings and starting modal 
+## ✅ Game settings and starting modal 
 
 1. Build starting modal
 
@@ -8,4 +8,8 @@
 
 Display on screens smaller then desktop (Tablet, Mobile) that this game is only optimized for desktop use. 
 
-2. Convert everything to OOP (The board into a class)
+## OOP 
+ Turn the codebase into OOP. 
+
+## ✅ Click Counter 
+ Implement a click counter that count how many times did you click on tiles. 
