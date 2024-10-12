@@ -9,13 +9,74 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-    <h1>Hello, tiles!</h1> 
-    <div class="choosen-color-container">
-        <p>Choosen color</p>
-        <div class="choosen-tile"></div>
-        <button class="btn reset-btn">Reset game</button>
-    </div>
-    <section class="tile-container">
+    <img src="./assets/images/Help.png" alt="" class="btn-help">
+    <div class="win-modal">
+        <div>
+            <div class="win-titles">
+                <h2>🏆 Congratulations! </h2>
+                <h2>✅ You Won!</h2>
+            </div>
 
-    </section>
+            <div class="win-stats">
+                <p>#️⃣ Total Clicks: <span id="clicks">160</span></p>
+                <p>⏱️ Elapsed time:  <span id="timer-win">00:00:46:36</span></p>
+            </div>
+
+            <button class="btn restart-game">Restart Game</button>
+        </div>
+        <img src="./assets/images/great-news.gif" alt="">
+    </div>
+    <div class="game-help-container">
+        <div class="game-help-overlay"></div>
+
+        <div class="game-help">
+            <img src="./assets/images/close.svg" alt="close button" class="btn-close">
+            <div>
+                <img src="./assets/images/tip-1.png" alt="tip-1">
+                <p>If you hover your mouse over the tiles each time they will have a different color. </p>
+            </div>
+            <div>
+                <img src="./assets/images/tip-2.png" alt="tip-2">
+                <p>You should try to click on the color you have choosen. They will stay there permanently.</p>
+            </div>
+            <div>
+                <img src="./assets/images/tip-3.png" alt="tip-3">
+                <p>In order to win fill in the whole canvas with the choosen color. Each color hides a secret present. Try to be as fast as you can.</p>
+            </div>
+            
+        </div>
+
+    </div>
+
+    <div class="responsivity-modal">
+        <h2>Sorry for that!</h2>
+        <p>This game is not optimized for touchscreen or mobile devices</p>
+    </div>
+
+    <div class="desktop-game">
+        <h1>Hello, tiles!</h1>
+        
+        <div class="color-modal">
+            <h2>Choose a color!</h2>
+            <form id="color-form">
+                <div id="color-parent"></div>
+                <button class="btn-start" type="submit">Start Game</button>
+            </form>
+        
+        </div>
+        <div class="game-container">
+            <div class="stats-bar">
+                <div class="click-count">Clicks: 0</div>
+                <div class="choosen-color-container">
+                    <p>Choosen color:</p>
+                    <div class="choosen-tile"></div>
+                    <button class="btn reset-btn">Reset game</button>
+                </div>
+                <div class="timer">00:00:00</div>
+            </div>
+            <section class="tile-container">
+            </section>
+        </div>
+    </div>
+</body>
 </html>
